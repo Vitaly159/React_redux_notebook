@@ -1,52 +1,64 @@
-import './writingArea.css'
+import { useSelector, useDispatch } from "react-redux";
+import { onUpdateNote, setValueTitle, setValueBody} from "../../features/addNoteSlice";
 
-function Main({activeNote, onUpdateNote, valueTitle, setValueTitle, valueBody, setValueBody}){
+import "./writingArea.css";
 
-    
-const onEditField = (title, valueTitle, body, valueBody) => {
-        onUpdateNote({
-            ...activeNote,
-            title: valueTitle,
-            body: valueBody,
-            lastChanged: Date.now(),
-        })
-    }
+function Main() {
+  const dispatch = useDispatch();
+  const notes = useSelector((state) => state.notes.notes);
+  const valueTitle = useSelector((state) => state.notes.valueTitle);
+  const valueBody = useSelector((state) => state.notes.valueBody);
+  const activeNote = useSelector((state) => state.notes.activeNote);
 
-    if(!activeNote)return <div className="center">Создайте новую запись и нажмите на нее</div>
+  const getActiveNote = () => {
+    return notes.find((note) => note.id === activeNote);
+  };
 
-    return (
-        <div className="main-wrapper">
-            <div className="main-note-edit">
+  const onEditField = (title, valueTitle, body, valueBody) => {
+    dispatch(onUpdateNote({
+      ...getActiveNote(),
+      [title]: valueTitle,
+      [body]: valueBody,
+      lastChanged: Date.now(),
+    }));
+  };
 
-                <button className='saveBtn' 
-                onClick={()=> onEditField('title', valueTitle, 'body', valueBody)}
-                >Сохранить задачу</button>
+  if (!getActiveNote())
+    return <div className="center">Создайте новую запись и нажмите на нее</div>;
 
-                <input  
-                    type='text'
-                    className='title'
-                    value={valueTitle}
-                    placeholder='Введите имя задачи'
-                    onChange={(e) => setValueTitle(e.target.value)} 
-                    autoFocus
-                />
+  return (
+    <div className="main-wrapper">
+      <div className="main-note-edit">
+        <button
+          className="saveBtn"
+          onClick={() => onEditField("title", valueTitle, "body", valueBody)}
+        >
+          Сохранить задачу
+        </button>
 
-                <textarea 
-                    className="body" 
-                    placeholder="Введите содержание..." 
-                    value={valueBody}
-                    onChange={(e) => setValueBody(e.target.value)} 
-                >
-                    
-                </textarea>
-            </div>
+        <input
+          type="text"
+          className="title"
+          value={valueTitle}
+          placeholder="Введите имя задачи"
+          onChange={(e) => dispatch(setValueTitle(e.target.value))}
+          autoFocus
+        />
 
-            <div className="main-note-preview">
-                <h1 className="preview-title">{activeNote.title}</h1>
-                <div className="note-preview">{activeNote.body}</div>
-            </div>
-        </div>
-    )
+        <textarea
+          className="body"
+          placeholder="Введите содержание..."
+          value={valueBody}
+          onChange={(e) => dispatch(setValueBody(e.target.value))}
+        ></textarea>
+      </div>
+
+      <div className="main-note-preview">
+        <h1 className="preview-title">{getActiveNote.title}</h1>
+        <div className="note-preview">{getActiveNote.body}</div>
+      </div>
+    </div>
+  );
 }
 
 export default Main;
