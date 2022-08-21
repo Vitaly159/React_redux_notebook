@@ -1,3 +1,4 @@
+import {loadState, saveState} from './localStorage';
 import "./App.css";
 import Notes from "./components/notes/Notes";
 import WritingArea from "./components/writingArea/WritingArea";

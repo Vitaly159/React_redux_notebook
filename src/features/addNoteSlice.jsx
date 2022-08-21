@@ -4,7 +4,9 @@ import uuid from "react-uuid";
 export const addNoteSlice = createSlice({
   name: "notes",
   initialState: {
-    notes: [],
+    notes: localStorage.getItem("notes")
+      ? JSON.parse(localStorage.getItem("notes"))
+      : [],
     activeNote: "",
     valueTitle: "",
     valueBody: "",
@@ -17,6 +19,7 @@ export const addNoteSlice = createSlice({
         body: "",
         lastChanged: Date.now(),
       });
+      localStorage.setItem("notes", JSON.stringify(state.notes));
     },
     setActiveNote(state, action) {
       state.activeNote = action.payload;
@@ -29,7 +32,7 @@ export const addNoteSlice = createSlice({
     },
     onDeleteNote(state, action) {
       state.notes = state.notes.filter((note) => note.id !== action.payload);
-      // state.activeNote = '';
+      localStorage.setItem("notes", JSON.stringify(state.notes));
     },
     onUpdateNote(state, action) {
       const updatedNotesArray = state.notes.map((note) => {
@@ -40,6 +43,7 @@ export const addNoteSlice = createSlice({
       });
 
       state.notes = updatedNotesArray;
+      localStorage.setItem("notes", JSON.stringify(state.notes));
     },
   },
 });
@@ -50,6 +54,6 @@ export const {
   onDeleteNote,
   onUpdateNote,
   setValueTitle,
-  setValueBody
+  setValueBody,
 } = addNoteSlice.actions;
 export default addNoteSlice.reducer;

@@ -1,4 +1,6 @@
 import React from "react";
+import {loadState, saveState} from './localStorage';
+
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 import { StrictMode } from "react";
