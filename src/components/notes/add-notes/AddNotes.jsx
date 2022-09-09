@@ -2,10 +2,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { setActiveNote, onDeleteNote, setValueBody, setValueTitle } from "../../../features/addNoteSlice";
 import "./addNotes.css";
 
-function AddNotes({ searchValue }) {
+function AddNotes() {
   const dispatch = useDispatch();
   const notes = useSelector((state) => state.notes.notes);
   const activeNote = useSelector((state) => state.notes.activeNote);
+  const searchValue = useSelector((state) => state.notes.searchValue);
 
   const filteredNotes = notes.filter(
     (note) =>
