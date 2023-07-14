@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`notesHeader Делаем снимок 1`] = `
+<div>
+  <div>
+    <div
+      class="notes-header"
+    >
+      <h1>
+        Записи
+      </h1>
+      <button
+        class="add-note"
+        role="save-button"
+      >
+        Новая запись
+      </button>
+    </div>
+    <div>
+      <input
+        class="searching"
+        placeholder="Поиск по записям"
+        role="input"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`notesHeader Работоспособность кнопки добавления записи 1`] = `
+<div>
+  <div
+    class="added-note false"
+    role="note-1"
+  >
+    <div
+      class="added-note-title"
+    >
+      <strong>
+        Имя задачи
+      </strong>
+      <button
+        class="del"
+        role="btn-rmv-1"
+      >
+        Удалить
+      </button>
+    </div>
+    <p
+      class="added-note-preview"
+      role="start-text-1"
+    >
+      ...
+    </p>
+    <small
+      class="note-meta"
+    >
+      Последнее изменение
+       
+      09.07.2023, 17:06
+    </small>
+  </div>
+</div>
+`;

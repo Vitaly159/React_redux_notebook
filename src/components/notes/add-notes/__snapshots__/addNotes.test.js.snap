@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`addNotes Тест onAddNote('') 1`] = `
+<div>
+  <div
+    class="added-note false"
+    role="note-1"
+  >
+    <div
+      class="added-note-title"
+    >
+      <strong>
+        Задача №1
+      </strong>
+      <button
+        class="del"
+        role="btn-rmv-1"
+      >
+        Удалить
+      </button>
+    </div>
+    <p
+      class="added-note-preview"
+      role="start-text-1"
+    >
+      very long text very long text!...
+    </p>
+    <small
+      class="note-meta"
+    >
+      Последнее изменение
+       
+      Invalid Date
+    </small>
+  </div>
+  <div
+    class="added-note false"
+    role="note-2"
+  >
+    <div
+      class="added-note-title"
+    >
+      <strong>
+        Задача №2
+      </strong>
+      <button
+        class="del"
+        role="btn-rmv-2"
+      >
+        Удалить
+      </button>
+    </div>
+    <p
+      class="added-note-preview"
+      role="start-text-2"
+    >
+      very long text very long text!...
+    </p>
+    <small
+      class="note-meta"
+    >
+      Последнее изменение
+       
+      Invalid Date
+    </small>
+  </div>
+</div>
+`;
+
+exports[`addNotes Тест фильтрации 1`] = `
+<div>
+  <div
+    class="added-note false"
+    role="note-1"
+  >
+    <div
+      class="added-note-title"
+    >
+      <strong>
+        Задача №1
+      </strong>
+      <button
+        class="del"
+        role="btn-rmv-1"
+      >
+        Удалить
+      </button>
+    </div>
+    <p
+      class="added-note-preview"
+      role="start-text-1"
+    >
+      very long text very long text!...
+    </p>
+    <small
+      class="note-meta"
+    >
+      Последнее изменение
+       
+      Invalid Date
+    </small>
+  </div>
+</div>
+`;

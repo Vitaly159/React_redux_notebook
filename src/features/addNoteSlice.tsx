@@ -16,10 +16,8 @@ type States = {
   searchValue: string;
 };
 
-const initialState: States = {
-  notes: localStorage.getItem("notes")
-    ? JSON.parse(localStorage.getItem("notes")!)
-    : [],
+export const initialState: States = {
+  notes: localStorage.getItem("notes") ? JSON.parse(localStorage.getItem("notes")!) : [],
   activeNote: "",
   valueTitle: "",
   valueBody: "",
@@ -49,9 +47,7 @@ export const addNoteSlice = createSlice({
       state.valueBody = action.payload;
     },
     onDeleteNote(state, action: PayloadAction<string>) {
-      state.notes = state.notes.filter(
-        (note: NoteType) => note.id !== action.payload
-      );
+      state.notes = state.notes.filter((note: NoteType) => note.id !== action.payload);
       localStorage.setItem("notes", JSON.stringify(state.notes));
     },
     onUpdateNote(state, action: PayloadAction<string>) {
@@ -81,4 +77,5 @@ export const {
   setValueBody,
   setSearchValue,
 } = addNoteSlice.actions;
+
 export default addNoteSlice.reducer;

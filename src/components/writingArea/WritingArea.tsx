@@ -1,10 +1,5 @@
 import { useAppSelector, useAppDispatch } from "../../hooks/hooks";
-import {
-  onUpdateNote,
-  setValueTitle,
-  setValueBody,
-} from "../../features/addNoteSlice";
-
+import { onUpdateNote, setValueTitle, setValueBody } from "../../features/addNoteSlice";
 import "./writingArea.css";
 
 function Main() {
@@ -13,12 +8,14 @@ function Main() {
   const valueTitle = useAppSelector((state) => state.notes.valueTitle);
   const valueBody = useAppSelector((state) => state.notes.valueBody);
   const activeNote = useAppSelector((state) => state.notes.activeNote);
+  const getActiveNote: any = () => notes?.find((note) => note.id === activeNote);
 
-  const getActiveNote: any = () => {
-    return notes.find((note) => note.id === activeNote);
-  };
-
-  const onEditField = (title: string, valueTitle: string, body: string, valueBody: string): void => {
+  const onEditField = (
+    title: string,
+    valueTitle: string,
+    body: string,
+    valueBody: string
+  ): void => {
     dispatch(
       onUpdateNote({
         ...getActiveNote(),
@@ -28,14 +25,15 @@ function Main() {
       })
     );
   };
+  console.log(notes);
 
-  if (!getActiveNote())
-    return <div className="center">Создайте новую запись и нажмите на нее</div>;
+  if (!getActiveNote()) return <div className="center">Создайте новую запись и нажмите на нее</div>;
 
   return (
     <div className="main-wrapper">
       <div className="main-note-edit">
         <button
+          aria-label="save"
           className="saveBtn"
           onClick={() => onEditField("title", valueTitle, "body", valueBody)}
         >

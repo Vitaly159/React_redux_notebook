@@ -1,5 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
-import { setActiveNote, onDeleteNote, setValueBody, setValueTitle } from "../../../features/addNoteSlice";
+import {
+  setActiveNote,
+  onDeleteNote,
+  setValueBody,
+  setValueTitle,
+} from "../../../features/addNoteSlice";
 import "./addNotes.css";
 
 function AddNotes() {
@@ -8,15 +13,16 @@ function AddNotes() {
   const activeNote = useSelector((state) => state.notes.activeNote);
   const searchValue = useSelector((state) => state.notes.searchValue);
 
-  const filteredNotes = notes.filter(
+  const filteredNotes = notes?.filter(
     (note) =>
       note.body.toLowerCase().includes(searchValue.toLowerCase()) ||
       note.title.toLowerCase().includes(searchValue.toLowerCase())
   );
 
-  return filteredNotes.map((note, index) => (
+  return filteredNotes?.map((note, index) => (
     <div
       key={index}
+      role={`note-${index + 1}`}
       className={`added-note ${note.id === activeNote && "active"}`}
       onClick={() => {
         dispatch(setActiveNote(note.id));
@@ -26,13 +32,17 @@ function AddNotes() {
     >
       <div className="added-note-title">
         <strong>{note.title}</strong>
-        <button className="del" onClick={() => dispatch(onDeleteNote(note.id))}>
+        <button
+          role={`btn-rmv-${index + 1}`}
+          className="del"
+          onClick={() => dispatch(onDeleteNote(note.id))}
+        >
           Удалить
         </button>
       </div>
 
-      <p className="added-note-preview">
-        {note.body && note.body.substr(0, 30) + "..."}
+      <p role={`start-text-${index + 1}`} className="added-note-preview">
+        {note?.body.substr(0, 30) + "..."}
       </p>
       <small className="note-meta">
         Последнее изменение{" "}
